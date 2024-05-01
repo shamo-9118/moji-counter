@@ -1,15 +1,25 @@
 import { useState } from 'react';
 
-export const useCountCharacter = (targetCharacter?: string): number => {
+import type { UseCountCharacter } from '../types/UseCountCharacter';
+
+export const useCountCharacter = (
+  targetCharacter?: string,
+): UseCountCharacter => {
   const [targetCharacterCount, setTargetCharacterCount] = useState<number>(0);
 
-  if (!targetCharacter) return targetCharacterCount;
+  const countSegmentedTargetCharacter = (
+    targetCharacter?: string,
+  ): number | undefined => {
+    if (!targetCharacter) return;
 
-  const segmenter = new Intl.Segmenter();
-  const segmentedTargetCharacter = Array.from(
-    segmenter.segment(targetCharacter),
-  );
-  setTargetCharacterCount([...segmentedTargetCharacter].length);
+    // 改行コード・空白・マルチバイト文字を１文字としてカウント
+    const segmenter = new Intl.Segmenter();
+    const segmentedTargetCharacter = Array.from(
+      segmenter.segment(targetCharacter),
+    );
 
-  return targetCharacterCount;
+    setTargetCharacterCount([...segmentedTargetCharacter].length);
+  };
+
+  return { targetCharacterCount, countSegmentedTargetCharacter };
 };
