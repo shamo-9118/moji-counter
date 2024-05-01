@@ -1,17 +1,9 @@
 import '@testing-library/jest-dom'
+import { renderHook } from '@testing-library/react';
+import { useCountCharacter } from '../hooks/useCountCharacter'
 
-it('マルチバイトの文字も空白も改行コードも１文字としてカウントする', () => {
-  const targetCharacter = '丸本はよく丸木と 間違えられます🥺\n';
-  const expectedTargetCharacterCount = 18;
+it('レンダリングされた時は0が表示出力', () => {
+  const { result } = renderHook(()=> useCountCharacter())
 
-  // lengthはコードユニットを数えるためダメらしい、、、
-  const _targetCharacterCount = targetCharacter.length
-
-  // 配列にしてlengthにするのもダメなよう、、
-  const __targetCharacterCount = targetCharacter.split('').length
-
-  const segmenter = new Intl.Segmenter("ja", {granularity: "grapheme"});
-  const targetCharacterCount = Array.from(segmenter.segment(targetCharacter))
-
-  expect([...targetCharacterCount].length).toBe(expectedTargetCharacterCount)
+  expect(result.current).toBe(0)
 })
