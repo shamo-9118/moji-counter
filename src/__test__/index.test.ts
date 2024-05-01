@@ -1,9 +1,11 @@
 import '@testing-library/jest-dom'
 
+it('文字数をカウントする', () => {
+  const targetCharacter = '丸本はよく丸木と間違えられます🥺';
+  const expectedTargetCharacterCount = 16;
 
-it('renders a heading', () => {
+  // lengthはコードユニットを数えるためダメらしい、、、
+  const _targetCharacterCount = targetCharacter.length
 
-  const heading = 1
-
-  expect(heading).toBe(1)
+  expect(targetCharacterCount).toBe(expectedTargetCharacterCount)
 })
