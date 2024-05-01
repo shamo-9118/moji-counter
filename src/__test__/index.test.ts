@@ -7,7 +7,8 @@ it('文字数をカウントする', () => {
   // lengthはコードユニットを数えるためダメらしい、、、
   const _targetCharacterCount = targetCharacter.length
 
-  const targetCharacterCount = targetCharacter.split('').length
+  // 配列にしてlengthにするのもダメなよう、、
+  const __targetCharacterCount = targetCharacter.split('').length
 
   expect(targetCharacterCount).toBe(expectedTargetCharacterCount)
 })
