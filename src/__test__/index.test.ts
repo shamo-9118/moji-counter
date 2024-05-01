@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom'
 
-it('文字数をカウントする', () => {
-  const targetCharacter = '丸本はよく丸木と間違えられます🥺';
-  const expectedTargetCharacterCount = 16;
+it('マルチバイトの文字も空白も改行コードも１文字としてカウントする', () => {
+  const targetCharacter = '丸本はよく丸木と 間違えられます🥺\n';
+  const expectedTargetCharacterCount = 18;
 
   // lengthはコードユニットを数えるためダメらしい、、、
   const _targetCharacterCount = targetCharacter.length
@@ -10,5 +10,8 @@ it('文字数をカウントする', () => {
   // 配列にしてlengthにするのもダメなよう、、
   const __targetCharacterCount = targetCharacter.split('').length
 
-  expect(targetCharacterCount).toBe(expectedTargetCharacterCount)
+  const segmenter = new Intl.Segmenter("ja", {granularity: "grapheme"});
+  const targetCharacterCount = Array.from(segmenter.segment(targetCharacter))
+
+  expect([...targetCharacterCount].length).toBe(expectedTargetCharacterCount)
 })
