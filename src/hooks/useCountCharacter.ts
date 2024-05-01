@@ -6,8 +6,10 @@ export const useCountCharacter = (targetCharacter?: string): number => {
   if (!targetCharacter) return targetCharacterCount;
 
   const segmenter = new Intl.Segmenter();
-  const segmentedTargetCharacter = Array.from(segmenter.segment(targetCharacter));
-  setTargetCharacterCount([...segmentedTargetCharacter].length)
+  const segmentedTargetCharacter = Array.from(
+    segmenter.segment(targetCharacter),
+  );
+  setTargetCharacterCount([...segmentedTargetCharacter].length);
 
   return targetCharacterCount;
-}
+};
