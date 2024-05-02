@@ -1,14 +1,16 @@
 import { renderHook } from '@testing-library/react';
 import { useCountCharacter } from '../hooks/useCountCharacter';
 
-it('useCountCharacterの初期動作テスト', () => {
-  const { result } = renderHook(() => useCountCharacter(''));
+describe('全文字数をカウントする処理のテストj ', () => {
+  it('初期は0を表示', () => {
+    const { result } = renderHook(() => useCountCharacter(''));
 
-  expect(result.current.targetCharacterCount).toBe(0);
-});
+    expect(result.current.targetCharacterCount).toBe(0);
+  });
 
-it('useCountCharacterの文字数検証時のテスト', () => {
-  const { result } = renderHook(() => useCountCharacter('丸 🥺\n'));
+  it('全文字数をカウント', () => {
+    const { result } = renderHook(() => useCountCharacter('丸 🥺\n'));
 
-  expect(result.current.targetCharacterCount).toBe(4);
+    expect(result.current.targetCharacterCount).toBe(4);
+  });
 });
