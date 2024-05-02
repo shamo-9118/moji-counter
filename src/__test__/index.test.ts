@@ -1,24 +1,14 @@
 import '@testing-library/jest-dom';
-import { renderHook, act } from '@testing-library/react';
-
-import { useCountCharacter } from '../hooks/useCountCharacter';
+import { countSegmentedTargetCharacter } from '../utils/countSegmentedTargetCharacter';
 
 describe('文字数カウント処理のテスト', () => {
   it('レンダリングされた時は0が表示出力', () => {
-    const { result } = renderHook(() => useCountCharacter());
-
-    expect(result.current.targetCharacterCount).toBe(0);
+    expect(countSegmentedTargetCharacter('')).toBe(0);
   });
 
   it('改行コード・スペース・マルチバイトの文字なんでも１文字としてカウント', () => {
-    const targetCharacter = '丸本はよく丸 木と間違えられます🥺\n';
-
-    const { result } = renderHook(() => useCountCharacter());
-
-    act(() => {
-      result.current.countSegmentedTargetCharacter(targetCharacter);
-    });
-
-    expect(result.current.targetCharacterCount).toBe(18);
+    expect(
+      countSegmentedTargetCharacter('丸本はよく丸 木と間違えられます🥺\n'),
+    ).toBe(18);
   });
 });
