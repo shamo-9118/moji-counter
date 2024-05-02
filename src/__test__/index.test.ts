@@ -1,14 +1,19 @@
 import '@testing-library/jest-dom';
-import { countSegmentedTargetCharacter } from '../utils/countSegmentedTargetCharacter';
+import { dividSegmentTargetCharacter } from '../utils/dividSegmentTargetCharacter';
 
 describe('文字数カウント処理のテスト', () => {
   it('レンダリングされた時は0が表示出力', () => {
-    expect(countSegmentedTargetCharacter('')).toBe(0);
+    expect(dividSegmentTargetCharacter('')).toEqual([]);
   });
 
   it('改行コード・スペース・マルチバイトの文字なんでも１文字としてカウント', () => {
-    expect(
-      countSegmentedTargetCharacter('丸本はよく丸 木と間違えられます🥺\n'),
-    ).toBe(18);
+    const expectedList = [
+      { segment: '丸', index: 0, input: '丸 🥺\n' },
+      { segment: ' ', index: 1, input: '丸 🥺\n' },
+      { segment: '🥺', index: 2, input: '丸 🥺\n' },
+      { segment: '\n', index: 4, input: '丸 🥺\n' },
+    ];
+
+    expect(dividSegmentTargetCharacter('丸 🥺\n')).toEqual(expectedList);
   });
 });
