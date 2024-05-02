@@ -1,1 +1,1 @@
-import * from '@/hooks/useCountCharacter'
+export * from '@/hooks/useCountCharacter';
