@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { countSegmentedTargetCharacter } from '../utils/countSegmentedTargetCharacter';
+import { dividSegmentTargetCharacter } from '../utils/dividSegmentTargetCharacter';
 
 export const useCountCharacter = (targetCharacter: string): number => {
   const [targetCharacterCount, setTargetCharacterCount] = useState<number>(0);
 
-  setTargetCharacterCount(countSegmentedTargetCharacter(targetCharacter));
+  setTargetCharacterCount(
+    [...dividSegmentTargetCharacter(targetCharacter)].length,
+  );
 
   return targetCharacterCount;
 };
