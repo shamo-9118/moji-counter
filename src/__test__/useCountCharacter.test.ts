@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { useCountCharacter } from '../hooks/useCountCharacter';
+import { useCountCharacter } from '../hooks';
 
 describe('全文字数をカウントする処理のテストj ', () => {
   it('初期は0を表示', () => {

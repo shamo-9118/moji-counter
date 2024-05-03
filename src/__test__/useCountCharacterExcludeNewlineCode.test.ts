@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { useCountCharacterExcludeNewlineCode } from '../hooks/useCountCharacterExcludeNewlineCode';
+import { useCountCharacterExcludeNewlineCode } from '../hooks';
 
 describe('改行コードを省いて文字数を数える処理のテスト', () => {
   it('初期は0を表示', () => {
