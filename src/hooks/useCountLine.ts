@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { convertArraySeparatedNewlineCharacters } from '../utils/convertArraySeparatedNewlineCharacters';
+import { convertArraySeparatedNewlineCharacters } from '../utils';
 
 export const useCountLine = (
   targetCharacter: string,

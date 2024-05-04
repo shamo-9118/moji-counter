@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { dividSegmentTargetCharacter } from '../utils/dividSegmentTargetCharacter';
+import { dividSegmentTargetCharacter } from '../utils';
 
 export const useCountCharacterExcludeNewLineAndBlank = (
   targetCharacter: string,

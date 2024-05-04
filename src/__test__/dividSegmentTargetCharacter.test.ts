@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { dividSegmentTargetCharacter } from '../utils/dividSegmentTargetCharacter';
+import { dividSegmentTargetCharacter } from '../utils';
 
 describe('文字数カウント処理のテスト', () => {
   it('レンダリングされた時は0が表示出力', () => {
