@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google';
 import {
   useCountCharacter,
   useCountCharacterExcludeNewLine,
@@ -8,8 +7,6 @@ import {
 
 import { Textarea, Container, SimpleGrid, Table } from '@mantine/core';
 import { useState } from 'react';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const [targetCharacter, setTargetCharacter] = useState<string>('');
