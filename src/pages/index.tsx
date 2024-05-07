@@ -15,6 +15,21 @@ export default function Home() {
     setTargetCharacter(event.target.value);
   };
 
+  const countCharacter =
+    useCountCharacter(targetCharacter).targetCharacterCount;
+
+  const countCharacterExcludeNewLine =
+    useCountCharacterExcludeNewLine(
+      targetCharacter,
+    ).excludeNewLineCharacterCount;
+
+  const countCharacterExcludeNewLineAndBlank =
+    useCountCharacterExcludeNewLineAndBlank(
+      targetCharacter,
+    ).excludeNewLineAndBlankCharacterCount;
+
+  const countLine = useCountLine(targetCharacter).targetLineCount;
+
   return (
     <main>
       <Container>
@@ -28,27 +43,15 @@ export default function Home() {
             <Table.Tbody>
               <Table.Tr>
                 <Table.Th>文字数</Table.Th>
-                <Table.Td>
-                  {useCountCharacter(targetCharacter).targetCharacterCount}
-                </Table.Td>
+                <Table.Td>{countCharacter}</Table.Td>
               </Table.Tr>
               <Table.Tr>
                 <Table.Th>文字数（改行なし）</Table.Th>
-                <Table.Td>
-                  {
-                    useCountCharacterExcludeNewLine(targetCharacter)
-                      .excludeNewLineCharacterCount
-                  }
-                </Table.Td>
+                <Table.Td>{countCharacterExcludeNewLine}</Table.Td>
               </Table.Tr>
               <Table.Tr>
                 <Table.Th>文字数（改行なし、空白）</Table.Th>
-                <Table.Td>
-                  {
-                    useCountCharacterExcludeNewLineAndBlank(targetCharacter)
-                      .excludeNewLineAndBlankCharacterCount
-                  }
-                </Table.Td>
+                <Table.Td>{countCharacterExcludeNewLineAndBlank}</Table.Td>
               </Table.Tr>
               <Table.Tr>
                 <Table.Th>バイト数（UTF-8）</Table.Th>
@@ -68,9 +71,7 @@ export default function Home() {
               </Table.Tr>
               <Table.Tr>
                 <Table.Th>行数</Table.Th>
-                <Table.Td>
-                  {useCountLine(targetCharacter).targetLineCount}
-                </Table.Td>
+                <Table.Td>{countLine}</Table.Td>
               </Table.Tr>
             </Table.Tbody>
           </Table>
