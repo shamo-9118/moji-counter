@@ -3,6 +3,7 @@ import {
   useCountCharacterExcludeNewLine,
   useCountCharacterExcludeNewLineAndBlank,
   useCountLine,
+  useCountCharacterByte,
 } from '../hooks';
 
 import { Textarea, Container, SimpleGrid, Table } from '@mantine/core';
@@ -15,6 +16,8 @@ export const Main = () => {
     setTargetCharacter(event.target.value);
   };
 
+  const encoder = new TextEncoder();
+  console.log(encoder);
   const countCharacter =
     useCountCharacter(targetCharacter).targetCharacterCount;
 
