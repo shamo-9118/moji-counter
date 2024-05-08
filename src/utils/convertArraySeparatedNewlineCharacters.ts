@@ -1,5 +1,3 @@
-import { removeEmptyInEndOfArray } from './';
-
 export const convertArraySeparatedNewlineCharacters = (
   targetCharacter: string,
 ): string[] => {
