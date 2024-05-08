@@ -5,14 +5,14 @@ export const convertArraySeparatedNewlineCharacters = (
 ): string[] => {
   // 改行コード・空白・マルチバイト文字を１文字としてカウント
   const splitedCharaceterListByNewLine = targetCharacter.split('\n');
-  const isEmptyAtEndOfArray =
-    splitedCharaceterListByNewLine[
-      splitedCharaceterListByNewLine.length - 1
-    ] === '';
 
-  if (!isEmptyAtEndOfArray) {
-    return splitedCharaceterListByNewLine;
+  const emptyIndexAtEndOfArray = splitedCharaceterListByNewLine.findLastIndex(
+    (splitedCharaceterByNewLine) => splitedCharaceterByNewLine !== '',
+  );
+
+  if (emptyIndexAtEndOfArray < 0) {
+    return [];
   }
 
-  return removeEmptyInEndOfArray(splitedCharaceterListByNewLine);
+  return splitedCharaceterListByNewLine.slice(0, emptyIndexAtEndOfArray + 1);
 };
