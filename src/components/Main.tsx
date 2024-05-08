@@ -3,7 +3,7 @@ import {
   useCountCharacterExcludeNewLine,
   useCountCharacterExcludeNewLineAndBlank,
   useCountLine,
-} from '@/hooks';
+} from '../hooks';
 
 import { Textarea, Container, SimpleGrid, Table } from '@mantine/core';
 import { useState } from 'react';
