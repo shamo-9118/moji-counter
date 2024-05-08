@@ -1,5 +1,6 @@
 import {
   useCountCharacter,
+  useCountCharacterExcludeNewLine,
   useCountCharacterExcludeNewLineAndBlank,
   useCountLine,
 } from '../hooks';
@@ -16,6 +17,11 @@ export const Main = () => {
 
   const countCharacter =
     useCountCharacter(targetCharacter).targetCharacterCount;
+
+  const countCharacterExcludeNewLine =
+    useCountCharacterExcludeNewLine(
+      targetCharacter,
+    ).excludeNewLineCharacterCount;
 
   const countCharacterExcludeNewLineAndBlank =
     useCountCharacterExcludeNewLineAndBlank(
@@ -37,6 +43,10 @@ export const Main = () => {
             <Table.Tr>
               <Table.Th>文字数</Table.Th>
               <Table.Td>{countCharacter}</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Th>文字数（改行なし）</Table.Th>
+              <Table.Td>{countCharacterExcludeNewLine}</Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>文字数（改行なし、空白）</Table.Th>

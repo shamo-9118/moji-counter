@@ -1,3 +1,4 @@
 export * from '../hooks/useCountCharacter';
-export * from '../hooks/useCountCharacterExcludeNewlineAndBlank';
+export * from '../hooks/useCountCharacterExcludeNewLine';
+export * from './useCountCharacterExcludeNewLineAndBlank';
 export * from '../hooks/useCountLine';
