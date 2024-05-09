@@ -15,9 +15,8 @@ export const Main = () => {
   const handleUserInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTargetCharacter(event.target.value);
   };
-
-  const encoder = new TextEncoder();
-  console.log(encoder);
+  const countCharacterByte =
+    useCountCharacterByte(targetCharacter).encodedCharBytes;
   const countCharacter =
     useCountCharacter(targetCharacter).targetCharacterCount;
 
@@ -57,19 +56,7 @@ export const Main = () => {
             </Table.Tr>
             <Table.Tr>
               <Table.Th>バイト数（UTF-8）</Table.Th>
-              <Table.Td>100</Table.Td>
-            </Table.Tr>
-            <Table.Tr>
-              <Table.Th>バイト数（UTF-16）</Table.Th>
-              <Table.Td>100</Table.Td>
-            </Table.Tr>
-            <Table.Tr>
-              <Table.Th>バイト数（Shift-JIS）</Table.Th>
-              <Table.Td>100</Table.Td>
-            </Table.Tr>
-            <Table.Tr>
-              <Table.Th>バイト数（EUC-JP）</Table.Th>
-              <Table.Td>100</Table.Td>
+              <Table.Td>{countCharacterByte}</Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>行数</Table.Th>
