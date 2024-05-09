@@ -5,7 +5,6 @@ export const useCountCharacterByte = (targetCharacter: string) => {
 
   useEffect(() => {
     const encoder = new TextEncoder();
-    console.log(encoder);
 
     const encodedCharList = encoder.encode(targetCharacter);
     setEncodedCharBytes(encodedCharList.length);
