@@ -6,6 +6,8 @@ import {
   useCountCharacterByte,
 } from '../hooks';
 
+import { insertComma } from '@/utils';
+
 import {
   Container,
   FocusTrap,
@@ -21,20 +23,24 @@ export const Main = () => {
   const handleUserInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTargetCharacter(event.target.value);
   };
-  const countCharacterByte =
-    useCountCharacterByte(targetCharacter).encodedCharBytes;
-  const countCharacter =
-    useCountCharacter(targetCharacter).targetCharacterCount;
 
-  const countCharacterExcludeNewLine =
-    useCountCharacterExcludeNewLine(
-      targetCharacter,
-    ).excludeNewLineCharacterCount;
+  const countCharacterByte = insertComma(
+    useCountCharacterByte(targetCharacter).encodedCharBytes,
+  );
 
-  const countCharacterExcludeNewLineAndBlank =
-    useCountCharacterExcludeNewLineAndBlank(
-      targetCharacter,
-    ).excludeNewLineAndBlankCharacterCount;
+  const countCharacter = insertComma(
+    useCountCharacter(targetCharacter).targetCharacterCount,
+  );
+
+  const countCharacterExcludeNewLine = insertComma(
+    useCountCharacterExcludeNewLine(targetCharacter)
+      .excludeNewLineCharacterCount,
+  );
+
+  const countCharacterExcludeNewLineAndBlank = insertComma(
+    useCountCharacterExcludeNewLineAndBlank(targetCharacter)
+      .excludeNewLineAndBlankCharacterCount,
+  );
 
   const countLine = useCountLine(targetCharacter).targetLineCount;
   return (
