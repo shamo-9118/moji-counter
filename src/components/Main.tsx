@@ -6,7 +6,13 @@ import {
   useCountCharacterByte,
 } from '../hooks';
 
-import { Textarea, Container, SimpleGrid, Table } from '@mantine/core';
+import {
+  Container,
+  FocusTrap,
+  Textarea,
+  Table,
+  SimpleGrid,
+} from '@mantine/core';
 import { useState } from 'react';
 
 export const Main = () => {
@@ -34,14 +40,15 @@ export const Main = () => {
   return (
     <Container>
       <SimpleGrid cols={2}>
-        <Textarea
-          placeholder='こちらにカウントしたい文字を入れてください'
-          autoFocus
-          onChange={(event) => {
-            handleUserInput(event);
-          }}
-          rows={14}
-        />
+        <FocusTrap>
+          <Textarea
+            placeholder='こちらにカウントしたい文字を入れてください'
+            onChange={(event) => {
+              handleUserInput(event);
+            }}
+            rows={14}
+          />
+        </FocusTrap>
         <Table highlightOnHover>
           <Table.Tbody>
             <Table.Tr>
