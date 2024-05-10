@@ -35,6 +35,8 @@ export const Main = () => {
     <Container>
       <SimpleGrid cols={2}>
         <Textarea
+          placeholder='こちらにカウントしたい文字を入れてください'
+          autoFocus
           onChange={(event) => {
             handleUserInput(event);
           }}
