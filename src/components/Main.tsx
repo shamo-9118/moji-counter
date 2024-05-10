@@ -60,7 +60,7 @@ export const Main = () => {
               <Table.Td>{countCharacterExcludeNewLine}</Table.Td>
             </Table.Tr>
             <Table.Tr>
-              <Table.Th>文字数（改行なし、空白）</Table.Th>
+              <Table.Th>文字数（改行なし・空白なし）</Table.Th>
               <Table.Td>{countCharacterExcludeNewLineAndBlank}</Table.Td>
             </Table.Tr>
             <Table.Tr>
