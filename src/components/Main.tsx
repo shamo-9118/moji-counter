@@ -24,23 +24,21 @@ export const Main = () => {
     setTargetCharacter(event.target.value);
   };
 
-  const countCharacterByte = insertComma(
-    useCountCharacterByte(targetCharacter).encodedCharBytes,
-  );
+  const countCharacterByte =
+    useCountCharacterByte(targetCharacter).encodedCharBytes;
 
-  const countCharacter = insertComma(
-    useCountCharacter(targetCharacter).targetCharacterCount,
-  );
+  const countCharacter =
+    useCountCharacter(targetCharacter).targetCharacterCount;
 
-  const countCharacterExcludeNewLine = insertComma(
-    useCountCharacterExcludeNewLine(targetCharacter)
-      .excludeNewLineCharacterCount,
-  );
+  const countCharacterExcludeNewLine =
+    useCountCharacterExcludeNewLine(
+      targetCharacter,
+    ).excludeNewLineCharacterCount;
 
-  const countCharacterExcludeNewLineAndBlank = insertComma(
-    useCountCharacterExcludeNewLineAndBlank(targetCharacter)
-      .excludeNewLineAndBlankCharacterCount,
-  );
+  const countCharacterExcludeNewLineAndBlank =
+    useCountCharacterExcludeNewLineAndBlank(
+      targetCharacter,
+    ).excludeNewLineAndBlankCharacterCount;
 
   const countLine = useCountLine(targetCharacter).targetLineCount;
   return (
@@ -59,29 +57,33 @@ export const Main = () => {
           <Table.Tbody>
             <Table.Tr>
               <Table.Th>文字数</Table.Th>
-              <Table.Td style={{ textAlign: 'end' }}>{countCharacter}</Table.Td>
+              <Table.Td style={{ textAlign: 'end' }}>
+                {countCharacter.toLocaleString()}
+              </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>文字数（改行なし）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterExcludeNewLine}
+                {countCharacterExcludeNewLine.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>文字数（改行なし・空白なし）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterExcludeNewLineAndBlank}
+                {countCharacterExcludeNewLineAndBlank.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>バイト数（UTF-8）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterByte}
+                {countCharacterByte.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>行数</Table.Th>
-              <Table.Td style={{ textAlign: 'end' }}>{countLine}</Table.Td>
+              <Table.Td style={{ textAlign: 'end' }}>
+                {countLine.toLocaleString()}
+              </Table.Td>
             </Table.Tr>
           </Table.Tbody>
         </Table>
