@@ -1,10 +1,4 @@
-import {
-  useCountCharacter,
-  useCountCharacterExcludeNewLine,
-  useCountCharacterExcludeNewLineAndBlank,
-  useCountLine,
-  useCountCharacterByte,
-} from '../hooks';
+import { useCountCharacter } from '../hooks';
 
 import {
   Container,
