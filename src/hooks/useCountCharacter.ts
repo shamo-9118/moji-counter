@@ -1,16 +1,68 @@
 import { useEffect, useState } from 'react';
-import { dividSegmentTargetCharacter } from '../utils';
+import {
+  dividSegmentTargetCharacter,
+  convertArraySeparatedNewlineCharacters,
+} from '../utils';
 
-export const useCountCharacter = (
-  targetCharacter: string,
-): { targetCharacterCount: number } => {
+type CountCharacter = {
+  targetCharacterCount: number;
+  encodedCharBytes: number;
+  excludeNewLineCharacterCount: number;
+  excludeNewLineAndBlankCharacterCount: number;
+  targetLineCount: number;
+};
+
+export const useCountCharacter = (targetCharacter: string): CountCharacter => {
   const [targetCharacterCount, setTargetCharacterCount] = useState<number>(0);
+  const [encodedCharBytes, setEncodedCharBytes] = useState<number>(0);
+  const [excludeNewLineCharacterCount, setExcludeNewLineCharacterCount] =
+    useState<number>(0);
+  const [
+    excludeNewLineAndBlankCharacterCount,
+    setExcludeNewLineAndBlankCharacterCount,
+  ] = useState<number>(0);
+  const [targetLineCount, setTargetLineCount] = useState<number>(0);
 
   useEffect(() => {
-    setTargetCharacterCount(
-      [...dividSegmentTargetCharacter(targetCharacter)].length,
+    const dividSegmentedTargetCharacter =
+      dividSegmentTargetCharacter(targetCharacter);
+    setTargetCharacterCount(dividSegmentedTargetCharacter.length);
+
+    const excludedNewLineSegmentedTargetCharacterList = [
+      ...dividSegmentedTargetCharacter,
+    ].filter((data) => data.segment !== '\n');
+
+    setExcludeNewLineCharacterCount(
+      excludedNewLineSegmentedTargetCharacterList.length,
+    );
+
+    const segmentedTextWithNewLineAndWhitespaceRemoved =
+      dividSegmentTargetCharacter(targetCharacter).filter((segmentedText) => {
+        return (
+          segmentedText.segment !== '\n' &&
+          segmentedText.segment !== ' ' &&
+          segmentedText.segment !== '\u3000'
+        );
+      });
+    setExcludeNewLineAndBlankCharacterCount(
+      segmentedTextWithNewLineAndWhitespaceRemoved.length,
+    );
+
+    const encoder = new TextEncoder();
+    const encodedCharList = encoder.encode(targetCharacter);
+
+    setEncodedCharBytes(encodedCharList.length);
+
+    setTargetLineCount(
+      [...convertArraySeparatedNewlineCharacters(targetCharacter)].length,
     );
   }, [targetCharacter]);
 
-  return { targetCharacterCount };
+  return {
+    targetCharacterCount,
+    encodedCharBytes,
+    excludeNewLineCharacterCount,
+    excludeNewLineAndBlankCharacterCount,
+    targetLineCount,
+  };
 };
