@@ -22,23 +22,14 @@ export const Main = () => {
     setTargetCharacter(event.target.value);
   };
 
-  const countCharacterByte =
-    useCountCharacterByte(targetCharacter).encodedCharBytes;
+  const {
+    targetCharacterCount,
+    encodedCharBytes,
+    excludeNewLineCharacterCount,
+    excludeNewLineAndBlankCharacterCount,
+    targetLineCount,
+  } = useCountCharacter(targetCharacter);
 
-  const countCharacter =
-    useCountCharacter(targetCharacter).targetCharacterCount;
-
-  const countCharacterExcludeNewLine =
-    useCountCharacterExcludeNewLine(
-      targetCharacter,
-    ).excludeNewLineCharacterCount;
-
-  const countCharacterExcludeNewLineAndBlank =
-    useCountCharacterExcludeNewLineAndBlank(
-      targetCharacter,
-    ).excludeNewLineAndBlankCharacterCount;
-
-  const countLine = useCountLine(targetCharacter).targetLineCount;
   return (
     <Container>
       <SimpleGrid cols={2}>
@@ -56,31 +47,31 @@ export const Main = () => {
             <Table.Tr>
               <Table.Th>文字数</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacter.toLocaleString()}
+                {targetCharacterCount.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>文字数（改行なし）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterExcludeNewLine.toLocaleString()}
+                {excludeNewLineCharacterCount.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>文字数（改行なし・空白なし）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterExcludeNewLineAndBlank.toLocaleString()}
+                {excludeNewLineAndBlankCharacterCount.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>バイト数（UTF-8）</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countCharacterByte.toLocaleString()}
+                {encodedCharBytes.toLocaleString()}
               </Table.Td>
             </Table.Tr>
             <Table.Tr>
               <Table.Th>行数</Table.Th>
               <Table.Td style={{ textAlign: 'end' }}>
-                {countLine.toLocaleString()}
+                {targetLineCount.toLocaleString()}
               </Table.Td>
             </Table.Tr>
           </Table.Tbody>
