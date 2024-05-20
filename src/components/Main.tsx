@@ -6,8 +6,6 @@ import {
   useCountCharacterByte,
 } from '../hooks';
 
-import { insertComma } from '@/utils';
-
 import {
   Container,
   FocusTrap,
