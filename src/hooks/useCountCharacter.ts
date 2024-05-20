@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   dividSegmentTargetCharacter,
   convertArraySeparatedNewlineCharacters,
+  encodeCharacter,
 } from '../utils';
 
 type CountCharacter = {
@@ -48,9 +49,7 @@ export const useCountCharacter = (targetCharacter: string): CountCharacter => {
       segmentedTextWithNewLineAndWhitespaceRemoved.length,
     );
 
-    const encoder = new TextEncoder();
-    const encodedCharList = encoder.encode(targetCharacter);
-
+    const encodedCharList = encodeCharacter(targetCharacter);
     setEncodedCharBytes(encodedCharList.length);
 
     setTargetLineCount(
