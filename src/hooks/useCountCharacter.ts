@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import {
   dividSegmentTargetCharacter,
   convertArraySeparatedNewlineCharacters,
@@ -24,7 +24,7 @@ export const useCountCharacter = (targetCharacter: string): CountCharacter => {
   ] = useState<number>(0);
   const [targetLineCount, setTargetLineCount] = useState<number>(0);
 
-  useEffect(() => {
+  const characterCount = useMemo(() => {
     const dividSegmentedTargetCharacter =
       dividSegmentTargetCharacter(targetCharacter);
     setTargetCharacterCount(dividSegmentedTargetCharacter.length);
